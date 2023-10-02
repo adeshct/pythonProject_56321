@@ -1,0 +1,11 @@
+{
+  "broker": "zerodha",
+  "clientID": "DA6125",
+  "password": "Karma@123",
+  "appKey": "xmsyfuzsf01tlnes",
+  "appSecret": "5ja3tjgclfqbral6ap2hyi14ui3mpfkl",
+  "totp": "2TXNB6UTNCJTKY6DGWUF4OV4V2Y3AGHH",
+  "webdriver_path" : "C:/Users/adesh/Downloads/pythonProject/venv/src/chromedriver.exe",
+  "url": "https://kite.zerodha.com/",
+  "redirectUrl": "http://localhost:8080/apis/broker/login/zerodha"
+}
