@@ -1,4 +1,4 @@
-@set "VIRTUAL_ENV=C:\Users\adesh\Downloads\pythonProject\venv"
+@set "VIRTUAL_ENV=C:\Users\adeshvijaya\pythonProject_56321\venv"
 
 @if defined _OLD_VIRTUAL_PROMPT (
     @set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

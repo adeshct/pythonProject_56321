@@ -1,7 +1,0 @@
-{
-  "port": 8080,
-  "enableSSL": false,
-  "sslPort": 8443,
-  "deployDir": "C:/Users/adesh/Downloads/pythonProject/venv/deploy",
-  "logFileDir": "C:/Users/adesh/Downloads/pythonProject/venv/logs"
-}
