@@ -287,7 +287,7 @@ class TradeManager:
                 TradeManager.cancelTargetOrder(trade)
                 TradeManager.checkAndUpdateMoveToCost(trade)
 
-            elif trade.slOrder.orderStatus == OrderStatus.CANCELLED or trade.slOrder.orderStatus ==OrderStatus.REJECTED:
+            elif trade.slOrder.orderStatus == OrderStatus.CANCELLED or trade.slOrder.orderStatus == OrderStatus.REJECTED:
                 exit = TradeManager.symbolToCMPMap[trade.tradingSymbol]
                 errorString = "The order was cancelled by the exchange"
 
@@ -658,18 +658,26 @@ class TradeManager:
     def getLastTradedPrice(tradingSymbol):
         return TradeManager.symbolToCMPMap[tradingSymbol]
 
-
     @staticmethod
     def trackBNF():
         futureSymbol = 'NIFTY BANK'
-        quote = Quotes.getCMP(futureSymbol)
+        quote = Quotes.getStrikePrice(futureSymbol)
         for tr in TradeManager.trades:
-            if tr.status == TradeState.ACTIVE:
+            if tr.tradeState == TradeState.ACTIVE and tr.optionType == "CE":
                 if quote <= tr.bnf_stoploss and int(datetime.now().time().minute) % 5 == 0:
                     tr.stopLoss = TradeManager.getLastTradedPrice(tr.tradingSymbol)
                     logging.info('TradeManager:Stoploss hit. Stoploss trade is being placed. Stoploss price = %f',
                                  tr.stopLoss)
                 elif quote >= tr.bnf_target:
+                    tr.target = TradeManager.getLastTradedPrice(tr.tradingSymbol)
+                    logging.info('TradeManager:Target hit. Target trade is being placed. Target price = %f',
+                                 tr.target)
+            elif tr.tradeState == TradeState.ACTIVE and tr.optionType == "PE":
+                if quote >= tr.bnf_stoploss and int(datetime.now().time().minute) % 5 == 0:
+                    tr.stopLoss = TradeManager.getLastTradedPrice(tr.tradingSymbol)
+                    logging.info('TradeManager:Stoploss hit. Stoploss trade is being placed. Stoploss price = %f',
+                                 tr.stopLoss)
+                elif quote <= tr.bnf_target:
                     tr.target = TradeManager.getLastTradedPrice(tr.tradingSymbol)
                     logging.info('TradeManager:Target hit. Target trade is being placed. Target price = %f',
                                  tr.target)
