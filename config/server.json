@@ -1,0 +1,7 @@
+{
+  "port": 8080,
+  "enableSSL": false,
+  "sslPort": 8443,
+  "deployDir": "C:/Users/adeshvijaya/pythonProject_56321/deploy",
+  "logFileDir": "C:/Users/adeshvijaya/pythonProject_56321/logs"
+}
