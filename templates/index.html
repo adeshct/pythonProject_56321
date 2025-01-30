@@ -28,7 +28,9 @@
 
     $(document).ready(function() {
       $.getJSON("https://api64.ipify.org?format=json", function(data) {
-        publicIP = data.ip; // Assign to variable}}
+        publicIP = data.ip; // Assign to variable
+        $("#ip-address").text(publicIP);
+      })});
         
     function loginToBroker() {
       window.location.href =  "http://"+publicIP+":8080" + "/apis/broker/login/zerodha"
