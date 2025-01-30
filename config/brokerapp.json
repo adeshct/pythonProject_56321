@@ -1,10 +1,10 @@
 {
   "broker": "zerodha",
-  "clientID": "DA6125",
-  "password": "Karma@123",
-  "appKey": "xmsyfuzsf01tlnes",
-  "appSecret": "5ja3tjgclfqbral6ap2hyi14ui3mpfkl",
-  "totp": "CGNV4LHZN6TPHLMJOYGDZT5L6RLZEGTA",
+  "clientID": "TQX050",
+  "password": "Chiguru@123",
+  "appKey": "tm7eyu5qqqja9vfm",
+  "appSecret": "ec0ca6ucbqu1y8416b1jda34sfzf72u9",
+  "totp": "ZQQBI4IIGK5SSCGUARSFPVYYCZ3XDNH4",
   "webdriver_path" : "/usr/bin/chromedriver",
   "url": "https://kite.zerodha.com/",
   "redirectUrl": "http://localhost:8080/apis/broker/login/zerodha"
