@@ -5,6 +5,7 @@ import logging
 import calendar
 import requests
 from datetime import datetime, timedelta
+import socket
 
 from config.Config import getHolidays
 from config.Config import getTelegramAppConfig
