@@ -42,8 +42,8 @@ class ZerodhaLogin(BaseLogin):
         options.add_argument("--remote-debugging-port=9222")
         print("Options Done")
         driver = webdriver.Chrome(service = service, options=options)  # , desired_capabilities=capabilities)
-        #driver.get(url)
-        driver.get("https://kite.zerodha.com/")
+        driver.get(url)
+        #driver.get("https://kite.zerodha.com/")
         driver.maximize_window()
         print("Driver Done")
         # input password
