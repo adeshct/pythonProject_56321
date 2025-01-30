@@ -23,8 +23,14 @@
     }
   </style>
   <script>
+    var publicIP; // Variable to store IP
+
+    $(document).ready(function() {
+      $.getJSON("https://api64.ipify.org?format=json", function(data) {
+        publicIP = data.ip; // Assign to variable}}
+        
     function loginToBroker() {
-      window.location.href =  "http://localhost:8080" + "/apis/broker/login/zerodha"
+      window.location.href =  "http://"+publicIP+":8080" + "/apis/broker/login/zerodha"
     }
   </script>
 
