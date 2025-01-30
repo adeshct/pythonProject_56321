@@ -27,7 +27,7 @@
         var publicIP = ""; // Default to empty
 
         $(document).ready(function() {
-            $.getJSON("https://api64.ipify.org?format=json", function(data) {
+            $.getJSON("https://api.ipify.org?format=json", function(data) {
                 publicIP = data.ip; // Assign to variable
                 $("#ip-address").text(publicIP);
                 console.log("Public IP:", publicIP); // Use the variable elsewhere
