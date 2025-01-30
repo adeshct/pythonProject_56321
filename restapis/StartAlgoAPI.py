@@ -9,7 +9,7 @@ from utils.Utils import Utils
 class StartAlgoAPI(MethodView):
   def post(self):
     # start algo in a separate thread
-    server_ip = Utils.get_sever_ip()
+    server_ip = Utils.get_server_ip()
     x = threading.Thread(target=Algo.startAlgo)
     x.start()
     systemConfig = getSystemConfig()
