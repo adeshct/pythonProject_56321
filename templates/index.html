@@ -22,27 +22,13 @@
       text-align: center;
     }
   </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-        var publicIP = ""; // Default to empty
 
-        $(document).ready(function() {
-            $.getJSON("https://api.ipify.org?format=json", function(data) {
-                publicIP = data.ip; // Assign to variable
-                $("#ip-address").text(publicIP);
-                console.log("Public IP:", publicIP); // Use the variable elsewhere
-            }).fail(function() {
-                $("#ip-address").text("Error fetching IP");
-                console.error("Error fetching IP");
-            });
-        });
+  <script>
+        var serverIP = "{{ server_ip }}"; // Get IP from Flask
+        console.log("Server IP:", serverIP);
 
         function loginToBroker() {
-            if (!publicIP) {
-                alert("Public IP not yet fetched. Please wait a moment.");
-                return;
-            }
-            window.location.href = "http://" + publicIP + ":8080/apis/broker/login/zerodha";
+            window.location.href = "http://" + serverIP + ":8080/apis/broker/login/zerodha";
         }
   </script>
 
