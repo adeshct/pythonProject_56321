@@ -11,6 +11,7 @@ from loginmgmt.BaseLogin import BaseLogin
 from pyotp import TOTP
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from utils.Utils import get_server_ip
 
 class ZerodhaLogin(BaseLogin):
     def __init__(self, brokerAppDetails):
@@ -102,8 +103,9 @@ class ZerodhaLogin(BaseLogin):
             self.setBrokerHandle(brokerHandle)
             self.setAccessToken(accessToken)
 
+            serverIP = get_server_ip()
             # redirect to home page with query param loggedIn=true
-            homeUrl = systemConfig['homeUrl'] + '?loggedIn=true'
+            homeUrl = "http://" + serverIP + ":8080/?loggedIn=true"
             logging.info('Zerodha Redirecting to home page %s', homeUrl)
             redirectUrl = homeUrl
         else:
