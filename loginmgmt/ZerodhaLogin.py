@@ -10,7 +10,7 @@ from config.Config import getSystemConfig
 from loginmgmt.BaseLogin import BaseLogin
 from pyotp import TOTP
 from selenium.webdriver.chrome.options import Options
-
+from selenium.webdriver.chrome.service import Service
 
 class ZerodhaLogin(BaseLogin):
     def __init__(self, brokerAppDetails):
@@ -28,45 +28,60 @@ class ZerodhaLogin(BaseLogin):
 
         url = brokerHandle.login_url()
 
+        print(url)
+
         # launch chrome and open zerodha website
-        service = webdriver.chrome.service.Service(f'{webdriver_path}')
+        service = Service(webdriver_path)
         service.start()
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(options=options)  # , desired_capabilities=capabilities)
-        driver.get(url)
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--window-size=1920x1080")
+        options.add_argument("--remote-debugging-port=9222")
+        print("Options Done")
+        driver = webdriver.Chrome(service = service, options=options)  # , desired_capabilities=capabilities)
+        #driver.get(url)
+        driver.get("https://kite.zerodha.com/")
         driver.maximize_window()
-
-
-
+        print("Driver Done")
         # input password
         pwd = WebDriverWait(driver, 30).until(
-            EC.visibility_of_element_located((By.XPATH, "//input[@type='password']")))
+            EC.visibility_of_element_located((By.ID, 'password')))
         pwd.send_keys(password)
 
         # input username
         user = WebDriverWait(driver, 30).until(
-            EC.visibility_of_element_located((By.XPATH, "//input[@id = 'userid']")))
+            EC.visibility_of_element_located((By.ID, 'userid')))
         user.send_keys(username)
+        print("login done")
 
         # click on login
         driver.find_element(By.XPATH, "//button[@type='submit']").click()
         sleep(1)
 
         # input totp
-        ztotp = driver.find_element(By.XPATH, "//input[@type = 'number']")
+        ztotp = driver.find_element(By.ID, 'userid')
         totp_token = TOTP(totp)
         token = totp_token.now()
         ztotp.send_keys(token)
 
+        print("OTP Done")
+
         # click on continue
-        driver.find_element(By.XPATH, "//button[@type = 'submit']").click()
-        driver.minimize_window()
+        #driver.find_element(By.XPATH, "//button[@class = 'button-orange wide']").click()
+        #driver.minimize_window()
         sleep(5)
         url = driver.current_url
+
+        print(url)
 
         status = url.split('status=')[1]
         status = status.split('&')[0]
         logging.info('status is = %s', status)
+
+        print('status is =%s', status)
 
         if status == "success":
             initial_token = url.split('request_token=')[1]

@@ -4,8 +4,8 @@
   "password": "Karma@123",
   "appKey": "xmsyfuzsf01tlnes",
   "appSecret": "5ja3tjgclfqbral6ap2hyi14ui3mpfkl",
-  "totp": "2TXNB6UTNCJTKY6DGWUF4OV4V2Y3AGHH",
-  "webdriver_path" : "C:/Users/adeshvijaya/pythonProject_56321/chromedriver.exe",
+  "totp": "CGNV4LHZN6TPHLMJOYGDZT5L6RLZEGTA",
+  "webdriver_path" : "/usr/bin/chromedriver",
   "url": "https://kite.zerodha.com/",
   "redirectUrl": "http://localhost:8080/apis/broker/login/zerodha"
 }
