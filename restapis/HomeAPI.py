@@ -2,11 +2,11 @@ from flask.views import MethodView
 from flask import render_template, request
 import socket
 import requests
-from utils.Utils import get_server_ip
+from utils.Utils import Utils
 
 class HomeAPI(MethodView):
   def get(self):
-    server_ip =  get_server_ip()
+    server_ip =  Utils.get_server_ip()
     
     if 'loggedIn' in request.args and request.args['loggedIn'] == 'true':
       return render_template('index_loggedin.html', server_ip=server_ip)
