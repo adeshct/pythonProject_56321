@@ -17,7 +17,7 @@ def getBrokerAppConfig():
     return jsonUserData
 
 def getTelegramAppConfig():
-  with open('C:/Users/adeshvijaya/pythonProject_56321/config/telegram.json', 'r') as telegramapp:
+  with open('./config/telegram.json', 'r') as telegramapp:
     jsonUserData = json.load(telegramapp)
     return jsonUserData
 
