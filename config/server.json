@@ -1,7 +1,0 @@
-{
-  "port": 8080,
-  "enableSSL": false,
-  "sslPort": 8443,
-  "deployDir": "/home/ec2-user/pythonProject_56321/deploy",
-  "logFileDir": "/home/ec2-user/pythonProject_56321/logs"
-}

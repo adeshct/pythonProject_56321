@@ -149,12 +149,14 @@ class Utils:
     expiryDateTime = Utils.getMonthlyExpiryDayDate()
     todayMarketStartTime = Utils.getMarketStartTime()
     expiryDayMarketEndTime = Utils.getMarketEndTime(expiryDateTime)
-    if numWeeksPlus > 0:
-      expiryDateTime = expiryDateTime + timedelta(days=numWeeksPlus * 7)
-      expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
-    if todayMarketStartTime > expiryDayMarketEndTime:
-      expiryDateTime = expiryDateTime + timedelta(days=6)
-      expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
+    # if numWeeksPlus > 0:
+    #   expiryDateTime = expiryDateTime + timedelta(days=numWeeksPlus * 7)
+    #   expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
+
+    # if todayMarketStartTime > expiryDayMarketEndTime:
+    #   expiryDateTime = expiryDateTime + timedelta(days=6)
+    #   expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
+
     # Check if monthly and weekly expiry same
     expiryDateTimeMonthly = Utils.getMonthlyExpiryDayDate()
     weekAndMonthExpriySame = False
@@ -189,7 +191,7 @@ class Utils:
     month = datetimeObj.month
     lastDay = calendar.monthrange(year, month)[1] # 2nd entry is the last day of the month
     datetimeExpiryDay = datetime(year, month, lastDay)
-    while calendar.day_name[datetimeExpiryDay.weekday()] != 'Wednesday':
+    while calendar.day_name[datetimeExpiryDay.weekday()] != 'Thursday':
       datetimeExpiryDay = datetimeExpiryDay - timedelta(days=1)
     while Utils.isHoliday(datetimeExpiryDay) == True:
       datetimeExpiryDay = datetimeExpiryDay - timedelta(days=1)
