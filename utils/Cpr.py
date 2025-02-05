@@ -4,18 +4,17 @@ from datetime import datetime, timedelta
 previous_day = datetime.now().date() - timedelta(days=1)
 
 
-# df = yf.download('^NSEBANK',start = "2023-09-22", end = "2023-09-22")
+#df = yf.download('^NSEBANK',start = previous_day, end = previous_day)
+#high =  df['High'].iloc[0]
 
-# high =  df['High'].iloc[0]
-#
-# low = df['Low'].iloc[0]
-# close = df['Close'].iloc[0]
+#low = df['Low'].iloc[0]
+#close = df['Close'].iloc[0]
 class Cpr_compute:
     @staticmethod
     def compute_cpr():
-        high = 44420.95
-        low = 44064.15
-        close = 44161.55
+        high = 50206.60
+        low = 49482.5
+        close = 50157.95
 
         central_pivot = round((high + low + close) / 3)
         bottom_cpr = round((high + low) / 2)
