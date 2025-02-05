@@ -7,5 +7,5 @@
   "totp": "ZQQBI4IIGK5SSCGUARSFPVYYCZ3XDNH4",
   "webdriver_path" : "/usr/bin/chromedriver",
   "url": "https://kite.zerodha.com/",
-  "redirectUrl": "http://localhost:8080/apis/broker/login/zerodha"
+  "redirectUrl": "http://13.201.78.170:8080/apis/broker/login/zerodha"
 }
