@@ -146,15 +146,15 @@ class Utils:
 
   @staticmethod
   def prepareWeeklyOptionsSymbol(inputSymbol, strike, optionType, numWeeksPlus = 0):
-    expiryDateTime = Utils.getWeeklyExpiryDayDate()
+    expiryDateTime = Utils.getMonthlyExpiryDayDate()
     todayMarketStartTime = Utils.getMarketStartTime()
     expiryDayMarketEndTime = Utils.getMarketEndTime(expiryDateTime)
     if numWeeksPlus > 0:
       expiryDateTime = expiryDateTime + timedelta(days=numWeeksPlus * 7)
-      expiryDateTime = Utils.getWeeklyExpiryDayDate(expiryDateTime)
+      expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
     if todayMarketStartTime > expiryDayMarketEndTime:
       expiryDateTime = expiryDateTime + timedelta(days=6)
-      expiryDateTime = Utils.getWeeklyExpiryDayDate(expiryDateTime)
+      expiryDateTime = Utils.getMonthlyExpiryDayDate(expiryDateTime)
     # Check if monthly and weekly expiry same
     expiryDateTimeMonthly = Utils.getMonthlyExpiryDayDate()
     weekAndMonthExpriySame = False
