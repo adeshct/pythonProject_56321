@@ -63,6 +63,19 @@ class PPStrategy(BaseStrategy):
     def process(self):
         now = datetime.now()
         futureSymbol = 'NIFTY BANK'
+
+        response = client.placesmartorder(
+                    strategy="strategy",
+                    symbol="BHEL",
+                    action="BUY",
+                    exchange="NSE",
+                    price_type="MARKET",
+                    product="MIS",
+                    quantity=10,
+                    position_size=10
+                )
+        print("Buy Order Response:", response)
+        
         if now < self.startTimestamp:
             return
         if len(self.trades) >= self.maxTradesPerDay:
