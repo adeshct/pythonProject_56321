@@ -69,7 +69,7 @@ class Utils:
 
   @staticmethod
   def getMarketEndTime(dateTimeObj = None):
-    return Utils.getTimeOfDay(15, 30, 0, dateTimeObj)
+    return Utils.getTimeOfDay(23, 30, 0, dateTimeObj)
 
   @staticmethod
   def getTimeOfDay(hours, minutes, seconds, dateTimeObj = None):
