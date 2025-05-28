@@ -29,6 +29,7 @@ class TradeManager:
     symbolToCMPMap = {}
     intradayTradesDir = None
     registeredSymbols = []
+    tries = 0
 
     @staticmethod
     def run():
@@ -217,6 +218,11 @@ class TradeManager:
             trade.entryOrder = TradeManager.getOrderManager().placeOrder(oip)
         except Exception as e:
             logging.error('TradeManager: Execute trade failed for tradeID %s: Error => %s', trade.tradeID, str(e))
+            #Adding condition to minimise the no.of executions when the order is rejected.
+            if tries == 100: 
+                trade.tradeState = TradeState.REJECTED
+                tries = 0
+                return True
             return False
 
         logging.info('TradeManager: Execute trade successful for %s and entryOrder %s', trade, trade.entryOrder)

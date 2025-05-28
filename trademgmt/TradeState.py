@@ -5,3 +5,4 @@ class TradeState:
   COMPLETED = 'completed' # completed when exits due to SL/Target/SquareOff
   CANCELLED = 'cancelled' # cancelled/rejected comes under this state only
   DISABLED = 'disabled' # disable trade if not triggered within the time limits or for any other reason
+  REJECTED = 'rejected' #Order placed but rejected
