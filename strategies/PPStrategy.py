@@ -11,11 +11,6 @@ from trademgmt.TradeManager import TradeManager
 from core.Quotes import Quotes
 from utils.Cpr import Cpr_compute
 import numpy as np
-from openalgo import api
-
-api_key = 'bcbdc172014afa2404f955771a7ebc3b939129dd4a1e2ecb37bc0d2fb4f8fcf6'
-
-client = api(api_key=api_key, host='http://127.0.0.1:5000')
 
 
 # Each strategy has to be derived from BaseStrategy
@@ -63,19 +58,6 @@ class PPStrategy(BaseStrategy):
     def process(self):
         now = datetime.now()
         futureSymbol = 'NIFTY BANK'
-
-        response = client.placesmartorder(
-                    strategy="strategy",
-                    symbol="BHEL",
-                    action="BUY",
-                    exchange="NSE",
-                    price_type="MARKET",
-                    product="MIS",
-                    quantity=10,
-                    position_size=10
-                )
-        print("Buy Order Response:", response)
-        
         if now < self.startTimestamp:
             return
         if len(self.trades) >= self.maxTradesPerDay:

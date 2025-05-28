@@ -1,5 +1,6 @@
-import yfinance as yf
+import logging
 from datetime import datetime, timedelta
+from core.Quotes import Quotes
 
 previous_day = datetime.now().date() - timedelta(days=1)
 
@@ -12,9 +13,17 @@ previous_day = datetime.now().date() - timedelta(days=1)
 class Cpr_compute:
     @staticmethod
     def compute_cpr():
-        high = 50206.60
-        low = 49482.5
-        close = 50157.95
+
+        # high = 50206.60
+        # low = 49482.5
+        # close = 50157.95
+
+        BankNifty_token = 260105
+        ohlc = Quotes.getHistData(BankNifty_token)
+        logging.info('OHLC - %s', ohlc)
+        high = ohlc['high']
+        low = ohlc['low']
+        close = ohlc['close']
 
         central_pivot = round((high + low + close) / 3)
         bottom_cpr = round((high + low) / 2)

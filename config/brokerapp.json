@@ -5,7 +5,7 @@
   "appKey": "tm7eyu5qqqja9vfm",
   "appSecret": "ec0ca6ucbqu1y8416b1jda34sfzf72u9",
   "totp": "ZQQBI4IIGK5SSCGUARSFPVYYCZ3XDNH4",
-  "webdriver_path" : "/usr/bin/chromedriver",
+  "webdriver_path" : "/home/gubbachigoodu13/Algo/chromedriver/chromedriver",
   "url": "https://kite.zerodha.com/",
-  "redirectUrl": "http://13.201.78.170:8080/apis/broker/login/zerodha"
+  "redirectUrl": "http://127.0.0.1:8080/apis/broker/login/zerodha"
 }

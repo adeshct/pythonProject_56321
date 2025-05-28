@@ -29,7 +29,7 @@
         console.log("Server IP:", serverIP);
     
     function startAlgo() {
-      var url =  "http://" + serverIP + ":8080" + "/apis/algo/start"
+      var url =  "http://127.0.0.1:8080" + "/apis/algo/start"
       var data = {};
       $.post(url, {},  
         function(data, status, xhr) {

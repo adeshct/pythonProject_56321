@@ -105,7 +105,7 @@ class ZerodhaLogin(BaseLogin):
 
             serverIP = Utils.get_server_ip()
             # redirect to home page with query param loggedIn=true
-            homeUrl = "http://" + serverIP + ":8080/?loggedIn=true"
+            homeUrl = "http://127.0.0.1:8080/?loggedIn=true"
             logging.info('Zerodha Redirecting to home page %s', homeUrl)
             redirectUrl = homeUrl
         else:

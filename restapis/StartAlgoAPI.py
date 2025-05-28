@@ -13,7 +13,7 @@ class StartAlgoAPI(MethodView):
     x = threading.Thread(target=Algo.startAlgo)
     x.start()
     systemConfig = getSystemConfig()
-    homeUrl = 'http://' + server_ip + ':8080/?algoStarted=true'
+    homeUrl = 'http://127.0.0.1:8080/?algoStarted=true'
     logging.info('Sending redirect url %s in response', homeUrl)
     respData = { 'redirect': homeUrl }
     return json.dumps(respData)

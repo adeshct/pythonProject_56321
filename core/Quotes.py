@@ -1,6 +1,9 @@
 from core.Controller import Controller
 from models.OptionBuying import OptionBuying
 from models.Quote import Quote
+from utils.Utils import Utils
+from datetime import datetime, timedelta, date
+import pandas as pd
 
 
 class Quotes:
@@ -78,4 +81,31 @@ class Quotes:
       optionBuying.isTradeLive=False
     else:
       optionBuying= None
-    return optionBuying    
+    return optionBuying 
+
+  @staticmethod
+  def getHistData(trade_symbol):
+    brokerHandle = Controller.getBrokerLogin().getBrokerHandle()
+    previous_day = date.today() - timedelta(days=1)
+    # 0 = Monday, 1 = Tuesday, ..., 5 = Saturday, 6 = Sunday
+    while Utils.isHoliday(previous_day) == True:
+      previous_day = previous_day - timedelta(days=1)
+
+    ohlc_data = brokerHandle.historical_data(instrument_token=trade_symbol,
+                                     from_date=previous_day,
+                                     to_date=previous_day,
+                                     interval="day")
+    if ohlc_data:
+      data_dict = ohlc_data[0]
+      previous_day_ohlc = pd.Series({
+        'open': data_dict['open'],
+        'high': data_dict['high'],
+        'low': data_dict['low'],
+        'close': data_dict['close']
+      })
+      #previous_day_ohlc = pd.DataFrame(ohlc_data).iloc[0][['open', 'high', 'low', 'close']].to_dict()
+      #print(f"Previous trading day's OHLC for BANKNIFTY ({previous_trading_day}): {previous_day_ohlc}")
+      return previous_day_ohlc
+    else:
+      print(f"No data found for the previous trading day ({previous_day}) for BANKNIFTY. It might be a holiday or data is not yet available.")
+    

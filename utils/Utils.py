@@ -94,7 +94,7 @@ class Utils:
   def isHoliday(datetimeObj):
     dayOfWeek = calendar.day_name[datetimeObj.weekday()]
     if dayOfWeek == 'Saturday' or dayOfWeek == 'Sunday':
-      return False #Change to True - Adhoc change
+      return True #Change to True - Adhoc change
 
     dateStr = Utils.convertToDateStr(datetimeObj)
     holidays = getHolidays()
