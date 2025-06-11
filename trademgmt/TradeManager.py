@@ -20,7 +20,7 @@ from models.OrderStatus import OrderStatus
 from models.Direction import Direction
 from core.Quotes import Quotes
 from utils.Utils import Utils
-
+from database_manager import create_trades_table, insert_trade, fetch_all_trades, fetch_trades_by_symbol
 
 class TradeManager:
     ticker = None
