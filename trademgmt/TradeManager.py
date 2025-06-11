@@ -158,30 +158,41 @@ class TradeManager:
         for strategy in TradeManager.strategyToInstanceMap:
             longTrade = TradeManager.getUntriggeredTrade(tick.tradingSymbol, strategy, Direction.LONG)
             shortTrade = TradeManager.getUntriggeredTrade(tick.tradingSymbol, strategy, Direction.SHORT)
-            if longTrade == None and shortTrade == None:
+            if longTrade is None and shortTrade is None:
                 # logging.info("UNTRIGGERED; NONE")
                 continue
             strategyInstance = TradeManager.strategyToInstanceMap[strategy]
-            if longTrade != None:
-                # logging.info("UNTRIGGERED: Eexecutiung trade")
+            if longTrade is not None:
+                # logging.info("UNTRIGGERED: Executing trade")
                 if strategyInstance.shouldPlaceTrade(longTrade, tick):
                     # place the longTrade
-                    # logging.info("Trade Executed")
                     isSuccess = TradeManager.executeTrade(longTrade)
-                    if isSuccess == True:
+                    if isSuccess is True:
                         # set longTrade state to ACTIVE
                         longTrade.tradeState = TradeState.ACTIVE
                         longTrade.startTimestamp = Utils.getEpoch()
+                        TradeManager.tries = 0
                         continue
+                    else:
+                        TradeManager.tries += 1
+                        if TradeManager.tries >= 100:
+                            longTrade.tradeState = TradeState.CANCELLED
+                            TradeManager.tries = 0
 
-            if shortTrade != None:
+            if shortTrade is not None:
                 if strategyInstance.shouldPlaceTrade(shortTrade, tick):
                     # place the shortTrade
                     isSuccess = TradeManager.executeTrade(shortTrade)
-                    if isSuccess == True:
+                    if isSuccess is True:
                         # set shortTrade state to ACTIVE
                         shortTrade.tradeState = TradeState.ACTIVE
                         shortTrade.startTimestamp = Utils.getEpoch()
+                        TradeManager.tries = 0
+                    else:
+                        TradeManager.tries += 1
+                        if TradeManager.tries >= 100:
+                            shortTrade.tradeState = TradeState.CANCELLED
+                            TradeManager.tries = 0
 
     @staticmethod
     def getUntriggeredTrade(tradingSymbol, strategy, direction):
